@@ -4,18 +4,18 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 stages:
-- stage: build stage
+- stage: buildstage
   jobs:
-  - job: first job
+  - job: firstjob
     steps:
     - bash: echo build first job
-- stage: dev stage
+- stage: devstage
   jobs:
-  - job: second job
+  - job: secondjob
     steps:
     - bash: echo build second job
-- stage: prod stage
+- stage: prodstage
   jobs:
-  - job: third job
+  - job: thirdjob
     steps:
     - bash: echo build third job
