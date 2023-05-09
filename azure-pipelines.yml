@@ -16,6 +16,6 @@ stages:
     - bash: echo build second job
 - stage: prod stage
   jobs:
-   job: third job
+  - job: third job
     steps:
     - bash: echo build third job
