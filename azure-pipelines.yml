@@ -23,3 +23,12 @@ stages:
   - job: thirdjob
     steps:
     - bash: echo build third job
+- stage: packstage
+  dependsOn:
+  - devstage
+  - buildstage
+  - prodstage
+  jobs:
+  - job: thirdjob
+    steps:
+    - bash: echo build third job
