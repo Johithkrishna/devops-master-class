@@ -10,11 +10,13 @@ stages:
     steps:
     - bash: echo build first job
 - stage: devstage
+- dependsOn: buildstage
   jobs:
   - job: secondjob
     steps:
     - bash: echo build second job
 - stage: prodstage
+- dependsOn:devstage
   jobs:
   - job: thirdjob
     steps:
