@@ -9,26 +9,45 @@ stages:
   - job: firstjob
     steps:
     - bash: echo build first job
-- stage: devstage
-  dependsOn: buildstage
-  jobs:
-  - job: secondjob
-    steps:
-    - bash: echo build second job
-- stage: prodstage
-  dependsOn:
-  - devstage
-  - buildstage
-  jobs:
-  - job: thirdjob
-    steps:
-    - bash: echo build third job
-- stage: packstage
-  dependsOn:
-  - devstage
-  - buildstage
-  - prodstage
-  jobs:
-  - job: thirdjob
-    steps:
-    - bash: echo build third job
+    - bash: echo $(pipelinelevelvariable)
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)
+    - bash: echo $(System.DefaultWorkingDirectory)
+    - bash: ls -R $(System.DefaultWorkingDirectory)
+    - bash: echo $(Build.ArtifactStagingDirectory)
+    - bash: java -version
+    - bash: python --version
+    - bash: node --version
+    - bash: mvn --version
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
+# - stage: devstage
+#   dependsOn: buildstage
+#   jobs:
+#   - job: secondjob
+#     steps:
+#     - bash: echo build second job
+# - stage: prodstage
+#   dependsOn:
+#   - devstage
+#   - buildstage
+#   jobs:
+#   - job: thirdjob
+#     steps:
+#     - bash: echo build third job
+# - stage: packstage
+#   dependsOn:
+#   - devstage
+#   - buildstage
+#   - prodstage
+#   jobs:
+#   - job: thirdjob
+#     steps:
+#     - bash: echo build third job
