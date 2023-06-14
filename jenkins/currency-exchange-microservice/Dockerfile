@@ -1,4 +1,3 @@
-FROM nginx
-RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
-VOLUME /usr/share/nginx/html
-VOLUME /etc/nginx
+FROM ubuntu: latest
+RUN apt install apache2 -y
+EXPOSE 80
